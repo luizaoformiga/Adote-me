@@ -13,16 +13,12 @@ const animalSchema = new Mongoose.Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String,
-        required: true
-    },
     cep: {
         type: Number,
         required: true
     },
-    image: {
-        type: Image,
+    imageURL: {
+        type: String,
         required: true
     },
 },   {

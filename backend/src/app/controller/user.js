@@ -1,38 +1,93 @@
 import UserModel from '../models/user';
+import { generateToken } from '../../services/auth';
 
-export default class userControl {
+export default class userController {
   async post(request, response) {
     try {
       const result = await UserModel.create(request.body);
       const { password, ...user } = result.toObject();
       const responseUser = user;
-      
-      if(!result) return response.status(401).json();
+      const token = generateToken(responseUser);
 
-      return response.status(200).json({ result, responseUser }); 
+      if(!result) {
+        return response.status(401).json({ message: "User not registered!" });
+      }
+
+      return response.status(200).json({ result, token }); 
     
     } catch (error) {
       return response.status(403).json(error);  
       }  
     }
-        
-    async get(request, response) {
-      try {
-        const user = await UserModel.find();
-        return response.status(200).json(user);
+
+  async get(request, response) {
+    try {
+      const user = await UserModel.find();
+      return response.status(200).json(user);
+  
+    } catch (error) {
+      return response.status(404).json(error);
+    }  
+  }
     
-      } catch (error) {
-        return response.status(404).json(error);
-      }
+  async getId(request, response) {
+    try {
+      const user = await UserModel.findById(request.decoded);
+      return response.status(200).json(user);
+              
+    } catch (error) {
+      return response.status(404).json(error);       
+    }  
+  }
+
+  async put(request, response) {
+    try { 
+      const { id } = request.params;
+      const user = await UserModel.updateOne(id, request.body);
+
+      if(user) {
+        const userUpdate = await UserModel.findOne(id);
+        return response.json(userUpdate);
+      } 
+
+      return response.status(404).json();
+
+    } catch (error) {
+      return response.status(500).json(error);
     }
-    
-    async getId(request, response) {
-      try {
-        const user = await UserModel.findById();
-        return response.status(200).json(user);
-                
-      } catch (error) {
-        return response.status(404).json(error);       
+  }
+
+  async patch(request, response) {
+    try {
+      const { id } = request.params;
+      const user = await UserModel.updateOne(id, { finished: true });
+  
+      if(user) {
+        const userUpdate = await UserModel.findOne(id);
+        return response.json(userUpdate);
       }
+  
+      return response.status(404).json({ message: 'NOT FOUND'});
+      
+    } catch (error) {
+      return response.status(500).json();
     }
+  }
+
+  async delete(request, response) {
+    try {
+      const { id } = request.params;
+      const user = await UserModel.remove(id);
+  
+      if(user) {
+        const userUpdate = await UserModel.findOne(id);
+        return response.json(userUpdate);
+      }
+  
+      return response.status(404).json({ message: 'NOT FOUND'});
+
+    } catch (error) {
+      return response.status(500).json();
+    }
+  }
 }

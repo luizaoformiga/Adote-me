@@ -5,10 +5,9 @@ import Header from '../../components/Header';
 
 export default function Faqs() {
     return (
-
         <Container>
             <Header/>
-<Text>Testando aqui</Text>
+            <Text>Testando aqui</Text>
         </Container>
     )
 }

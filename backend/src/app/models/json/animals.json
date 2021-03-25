@@ -1,0 +1,8 @@
+{
+    "title": "string",
+    "type": "String",
+    "description": "string",
+    "category": "string",
+    "cep": "number", 
+    "imageURL": "string"
+}

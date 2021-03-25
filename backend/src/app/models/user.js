@@ -1,12 +1,12 @@
 import Mongoose from 'mongoose';
 import crypto from 'crypto';
 
-const schema = new Mongoose.Schema({
+const userSchema = new Mongoose.Schema({
     username: {
       type: String,
       required: true,
-      minlength: 4,
-      maxlength: 99
+      minlength: 4 ['At least 4 letters'],
+      maxlength: 99 ['99 letters maximum']
     },
     email: {
         type: String,
@@ -15,6 +15,10 @@ const schema = new Mongoose.Schema({
         lowercase: true,
         trim: true
     }, 
+    imageURL: {
+        type: String,
+        required: true
+    },
     password: {
         type: String,
         required: [true, 'Password is required'],
@@ -36,6 +40,6 @@ const schema = new Mongoose.Schema({
     versionKey: false 
 })
 
-const UserModel = Mongoose.model('Users', schema);
+const UserModel = Mongoose.model('Users', userSchema);
 
 export default UserModel;
