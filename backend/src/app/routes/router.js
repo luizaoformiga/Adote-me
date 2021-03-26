@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { protectRoute } from '../../middlewares/auth';
 import UserController from '../controller/user';
 import AnimalController from '../controller/animal';
+import userMailController from '../controller/email/useController';
 
 const router = new Router();
 
@@ -20,5 +21,8 @@ router.post('/home/perfil', routerAnimal.post);
 router.put('/home/perfil/sign/:id', routerAnimal.put);
 router.patch('/home/perfil/sign/:id', routerAnimal.patch);
 router.delete('home/perfil/:id', routerAnimal.delete);
+
+const routerEmail = new userMailController();
+router.post('/sign', routerEmail.post);
 
 export default router;

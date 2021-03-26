@@ -18,9 +18,9 @@ export default class AnimalController {
         
   async get(request, response) {
     try {
-      const user = await AnimalModel.find();
+      const user = await AnimalModel.find(request.body);
 
-      if(!user) return response.status(400).json();
+      if(!user) return response.status(404).json({ message: "Not Found" });
 
       return response.status(200).json(user);
     
@@ -31,7 +31,8 @@ export default class AnimalController {
     
   async getId(request, response) {
     try {
-      const user = await AnimalModel.findById();
+      const { id } = request.params;
+      const user = await AnimalModel.findById(id, request.body);
 
       if(!user) return response.status(404).json({ ERROR: "NOT FOUND" });
 
@@ -45,14 +46,14 @@ export default class AnimalController {
   async put(request, response) {
     try { 
       const { id } = request.params;
-      const user = await AnimalModel.update(id, request.body);
+      const user = await AnimalModel.updateOne(id, request.body);
 
       if(user) {
         const userUpdate = await AnimalModel.findOne(id);
         return response.json(userUpdate);
       } 
 
-      return response.status(404).json();
+      return response.status(404).json({ Message: "Not found!" });
 
     } catch (error) {
       return response.status(500).json(error);
@@ -62,17 +63,17 @@ export default class AnimalController {
   async patch(request, response) {
     try {
       const { id } = request.params;
-      const user = await AnimalModel.update(id, { finished: true });
+      const user = await AnimalModel.updateOne(id, { finished: true });
   
       if(user) {
         const userUpdate = await AnimalModel.findOne(id);
         return response.json(userUpdate);
       }
   
-      return response.status(404).json({ message: 'NOT FOUND'});
+      return response.status(404).json({ Message: 'NOT FOUND'});
       
     } catch (error) {
-      return response.status(500).json();
+      return response.status(500).json(error);
     }
   }
 
@@ -89,7 +90,7 @@ export default class AnimalController {
       return response.status(404).json({ message: 'NOT FOUND'});
 
     } catch (error) {
-      return response.status(500).json();
+      return response.status(500).json(error);
     }
   }
 }

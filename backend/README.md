@@ -31,7 +31,7 @@
 generatekeys.sh
 ```
 
-*Logo em seguida pressione enter em todas as opções sem preencher nada. O resultado gererá uma chave 3 arquivos indicando as chaves únicas*
+*Logo em seguida pressione enter em todas as opções sem preencher nada. O resultado irá gerar uma chave 3 arquivos indicando as chaves únicas*
 
 ### Inicando a API
 
@@ -47,6 +47,10 @@ npm run start
 npx jest
 ```
 
-No momento, trata-se de uma aruitetura em MVC (Models, Views, Controllers), Para o uso do app *Adote-me* que logo estará disponível.
+No momento, trata-se de uma arquitetura em MVC (Models, Views, Controllers), Para o uso do app *Adote-me* que logo estará disponível.
+
+### Detalhes
+
+**Ainda sendo implementado o socket.io e envios de emails, em alguns dias serão totalmente resolvidos.**
 
 **Backend sendo criado com muito carinho por:** Luiz Lima

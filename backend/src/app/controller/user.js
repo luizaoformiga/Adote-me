@@ -22,7 +22,7 @@ export default class userController {
 
   async get(request, response) {
     try {
-      const user = await UserModel.find();
+      const user = await UserModel.find(request.body);
       return response.status(200).json(user);
   
     } catch (error) {
@@ -43,14 +43,17 @@ export default class userController {
   async put(request, response) {
     try { 
       const { id } = request.params;
-      const user = await UserModel.updateOne(id, request.body);
+      const result = await UserModel.updateOne(id, request.body);
+      const { password, ...user } = result.toObject();
+      const responseUser = user;
+      const token = generateToken(responseUser);
 
       if(user) {
-        const userUpdate = await UserModel.findOne(id);
+        const userUpdate = await UserModel.findOne({ id, token });
         return response.json(userUpdate);
       } 
 
-      return response.status(404).json();
+      return response.status(401).json({ Message: "Not registered!" });
 
     } catch (error) {
       return response.status(500).json(error);
@@ -70,7 +73,7 @@ export default class userController {
       return response.status(404).json({ message: 'NOT FOUND'});
       
     } catch (error) {
-      return response.status(500).json();
+      return response.status(500).json(error);
     }
   }
 
@@ -87,7 +90,7 @@ export default class userController {
       return response.status(404).json({ message: 'NOT FOUND'});
 
     } catch (error) {
-      return response.status(500).json();
+      return response.status(500).json(error);
     }
   }
 }
