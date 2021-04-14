@@ -1,6 +1,6 @@
 {
     "username": "string",
     "email": "string",
-    "imageURL": "string",
+    "image": "string",
     "password": "string"
 }

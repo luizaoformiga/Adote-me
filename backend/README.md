@@ -1,5 +1,8 @@
 ### GUIA
 
+Adicionando os models: 
+```knex migrate:latest```
+
 #### Como está o formato de json até o momento: 
 
 **Usuários:** 

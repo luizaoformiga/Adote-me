@@ -1,37 +1,34 @@
 {
   "name": "adote-me",
   "version": "1.0.0",
-  "author": "Luiz Lima",
-  "github": "https://github.com/luizaoformiga",
-  "license": "MIT",
   "main": "server.js",
+  "module": "commonjs",
   "scripts": {
     "start": "nodemon src/app/server.js",
     "test": "npx jest"
   },
   "dependencies": {
-    "express": "4.17.1",
-    "mongoose": "5.12.2",
-    "cors": "2.8.5",
-    "socket.io": "4.0.0",
-    "crypto": "1.0.1",
     "jsonwebtoken": "8.5.1",
-    "nodemailer": "^6.5.0",
-    "password-generator": "^2.3.2",
-    "sentry": "^0.1.2",
+    "husky": "6.0.0",
+    "cors": "2.8.5",
+    "express": "4.17.1",
     "jest": "26.6.3",
+    "knex": "^0.95.4",
+    "pg": "^8.5.1",
+    "prettier": "^2.2.1",
     "supertest": "6.1.3"
   },
   "devDependencies": {
+    "dotenv": "8.2.0",
+    "@babel/core": "^7.13.15",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.13.15",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "26.6.3",
+    "babel-preset-es2015": "^6.24.1",
     "eslint": "7.21.0",
     "eslint-config-airbnb": "18.2.1",
-    "babel-jest": "26.6.3",
-    "@babel/core": "^7.13.10",
-    "@babel/node": "^7.13.10",
-    "@babel/preset-env": "^7.13.10",
-    "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "sucrase": "3.17.1",
-    "nodemon": "2.0.7"
+    "nodemon": "2.0.7",
+    "sucrase": "3.17.1"
   }
 }

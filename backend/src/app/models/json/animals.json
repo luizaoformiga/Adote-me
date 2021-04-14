@@ -4,5 +4,5 @@
     "description": "string",
     "category": "string",
     "cep": "number", 
-    "imageURL": "string"
+    "image": "string"
 }
