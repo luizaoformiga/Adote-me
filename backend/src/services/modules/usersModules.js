@@ -1,4 +1,4 @@
-import database from '../database';
+import database from '../../database/index';
 
 export default class UsersModules {
   async postUsers(username, email, image, pasword) {

@@ -4,10 +4,10 @@ export default class UserController {
   async post(req, res) {
     const users = req.body;
     try {
-      const response = await UserServices.post(users);
+      const response = await UserServices.postUsers(users);
       
       if(response == null) {
-        throw new Error({ message: "NOT FOUND" });
+        return res.status(400).json({ message: "NOT FOUND" });
       }
 
       return res.status(201).json(response);
@@ -20,10 +20,10 @@ export default class UserController {
   async get(req, res) {
     const users = req.body;
     try {
-      const response = await UserServices.get(users);
+      const response = await UserServices.getUsers(users);
 
       if(response == null) {
-        throw new Error({ message: "NOT FOUND" });
+        return res.status(400).json({ message: "NOT FOUND" });
       }
 
       return res.status(200).json(response);
@@ -36,10 +36,10 @@ export default class UserController {
   async put(req, res) {
     const users = req.body;
     try {
-      const response = await UserServices.put(users);
+      const response = await UserServices.putUsers(users);
 
       if(response == null) {
-        throw new Error({ message: "NOT FOUND" });
+        return res.status(400).json({ message: "NOT FOUND" });
       }
 
       return res.status(201).json(response);
@@ -52,10 +52,10 @@ export default class UserController {
   async patch(req, res) {
     const users = req.body;
     try {
-      const response = await UserServices.patch(users);
+      const response = await UserServices.patchUsers(users);
        
       if(response == null) {
-        throw new Error({ message: "NOT FOUND" });
+        return res.status(400).json({ message: "NOT FOUND" });
       }
 
       return res.status(201).json(response);
@@ -68,10 +68,10 @@ export default class UserController {
   async delete(req, res) {
     const users = req.body;
     try {
-      const response = await UserServices.delete(users);
+      const response = await UserServices.deleteUsers(users);
 
       if(response == null) {
-        throw new Error({ message: "NOT EXISTS" });
+        return res.status(400).json({ message: "NOT FOUND" });
       }
 
       return res.status(200).json(response);

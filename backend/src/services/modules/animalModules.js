@@ -1,4 +1,4 @@
-import database from '../database';
+import database from '../../database';
 
 export default class AnimalModules {
   async postAnimal(title, type, description, category, cep, image) {

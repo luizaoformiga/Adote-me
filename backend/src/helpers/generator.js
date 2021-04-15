@@ -1,12 +1,14 @@
 import jwt from 'jsonwebtoken';
 
-const config = {
+const generator = {
   createToken(id) {
-    return jwt.sign({ id }, 'secret', { expiresIn: 'id'});  
+    const create = jwt.sign({ id }, 'secret', { expiresIn: 'id'}); 
+    return create;  
   }, 
   verifyToken(token) {
-    return jwt.verify(token, 'secret');
+    const verify = jwt.verify(token, 'secret');
+    return verify;
   }  
 }
 
-export default config;
+export default generator;

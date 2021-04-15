@@ -1,4 +1,5 @@
 import AnimalServices from '../../services/animalServices';
+//import generator from '../../helpers/generator';
 
 export default class AnimalController {
   async get(req, res) {
@@ -6,11 +7,11 @@ export default class AnimalController {
     try {
       const response = await AnimalServices.getAnimal(user);
       
-      if(response) {
-        return res.status(201).json(response);
+      if(response == null) {
+        return res.status(400).json({ message: "NOT FOUND" });
 
       } else {
-        return res.status(404).json({ message: "NOT FOUND" }); 
+        return res.status(200).json(response); 
       }
       
     } catch (error) {
@@ -25,7 +26,7 @@ export default class AnimalController {
       const response = await AnimalServices.postAnimal(user);
   
       if(response == null) {
-        throw new Error({ message: "NOT FOUND" });
+        return res.status(404).json({ message: "NOT FOUND" });
       }
 
       return res.status(201).json(response);
@@ -42,7 +43,7 @@ export default class AnimalController {
       const response = await AnimalServices.patchAnimal(user);
 
       if(response == null) {
-        throw new Error({ message: "NOT FOUND" });
+        return res.status(400).json({ message: "NOT FOUND" });
       }
 
       return res.status(201).json(response);
@@ -59,7 +60,7 @@ export default class AnimalController {
       const response = await AnimalServices.putAnimal(user);
 
       if(response == null) {
-        throw new Error({ message: "NOT FOUND" });
+        return res.status(400).json({ message: "NOT FOUND" });
       }
   
       return res.status(201).json(response);
@@ -76,7 +77,7 @@ export default class AnimalController {
       const response = await AnimalServices.deleteAnimal(user);
       
       if(response == null) {
-        throw new Error({ message: "NOT FOUND" });
+        return res.status(400).json({ message: "NOT FOUND" });
       }
   
       return res.status(201).json(response);

@@ -1,4 +1,4 @@
-const postgre = {
+const database = {
   client: 'pg',
     connection: {
       database: process.env.DATABASE,
@@ -12,8 +12,7 @@ const postgre = {
     migrations: {
       tableName: 'knex_migrations',
       directory: './src/database/migrations'
-    },
-    useNullAsDefault: true   
+    }
 };
 
-module.exports = postgre;
+export default database;
