@@ -1,11 +1,10 @@
 import AnimalServices from '../../services/animalServices';
-//import generator from '../../helpers/generator';
 
 export default class AnimalController {
-  async get(req, res) {
+  async getController(req, res) {
     const user = req.body;
     try {
-      const response = await AnimalServices.getAnimal(user);
+      const response = await AnimalServices.get(user);
       
       if(response == null) {
         return res.status(400).json({ message: "NOT FOUND" });
@@ -19,11 +18,11 @@ export default class AnimalController {
     }
   }
 
-  async post(req, res) {
+  async postController(req, res) {
     const user = req.body;
 
     try {
-      const response = await AnimalServices.postAnimal(user);
+      const response = await AnimalServices.post(user);
   
       if(response == null) {
         return res.status(404).json({ message: "NOT FOUND" });
@@ -36,11 +35,11 @@ export default class AnimalController {
     }
   }
 
-  async patch(req, res) {
+  async patchController(req, res) {
     const user = req.body;
   
     try {
-      const response = await AnimalServices.patchAnimal(user);
+      const response = await AnimalServices.patch(user);
 
       if(response == null) {
         return res.status(400).json({ message: "NOT FOUND" });
@@ -53,11 +52,11 @@ export default class AnimalController {
     }
   }
 
-  async put(req, res) {
+  async putController(req, res) {
     const user = req.body;
     
     try {
-      const response = await AnimalServices.putAnimal(user);
+      const response = await AnimalServices.put(user);
 
       if(response == null) {
         return res.status(400).json({ message: "NOT FOUND" });
@@ -70,11 +69,11 @@ export default class AnimalController {
     }
   }
 
-  async delete(req, res) {
+  async deleteController(req, res) {
     const user = req.body;
 
     try {
-      const response = await AnimalServices.deleteAnimal(user);
+      const response = await AnimalServices.delete(user);
       
       if(response == null) {
         return res.status(400).json({ message: "NOT FOUND" });

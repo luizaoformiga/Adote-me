@@ -1,6 +1,7 @@
 import database from '../../database';
+import AnimalRepository from '../repository/animalRepository';
 
-export default class AnimalModules {
+export default class AnimalModules extends AnimalRepository {
   async postAnimal(title, type, description, category, cep, image) {
     const data = { title, type, description, category, cep, image };
     const [ id ] = await database('Animal').insert(data).returning('id'); 
