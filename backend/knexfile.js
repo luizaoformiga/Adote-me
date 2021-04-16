@@ -1,9 +1,10 @@
 const database = {
-  client: 'pg',
+  client: 'postgresql',
     connection: {
-      database: process.env.DATABASE,
-      user:     process.env.USER,
-      password: process.env.PASSWORD
+      localhost: `${process.env.LOCALHOST}`,
+      database: `${process.env.DATABASE}`,
+      user:     `${process.env.USER}`,
+      password: `${process.env.PASSWORD}`
     },
     pool: {
       min: 2,

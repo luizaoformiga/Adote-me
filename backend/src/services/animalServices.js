@@ -1,28 +1,28 @@
 import AnimalModules from './modules/animalModules';
 
 export default class AnimalServices {
-  async get(data) {
-    const response = data;
-    return AnimalModules.getAnimal(response);
+  async get() {
+    const response = await AnimalModules.getAnimal();
+    return response;
   }
 
-  async post(data) {
-    const response = data;
-    return AnimalModules.postAnimal(response);
+  async post() {
+    const response = await AnimalModules.postAnimal();
+    return response;
   }
 
-  async put(data) {
-    const response = data;
-    return AnimalModules.putAnimal(response);
+  async put() {
+    const response = await AnimalModules.putAnimal();
+    return response;
   }
 
-  async patch(data) {
-    const response = data;
-    return AnimalModules.patchAnimal(response);
+  async patch() {
+    const response = await AnimalModules.patchAnimal();
+    return response;
   }
 
-  async delete(data) {
-    const response = data;
-    return AnimalModules.deleteAnimal(response);
+  async delete() {
+    const response = await AnimalModules.deleteAnimal();
+    return response;
   }
 }
